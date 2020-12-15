@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="socket.io">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font: 13px Helvetica, Arial;
+            background: #6a6a6a;
+        }
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 30%;
+            width: 100%;
+        }
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 80%;
+            margin-right: .5%;
+        }
+        form button {
+            width: 10%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        #msg {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        #msg li {
+            padding: 5px 10px;
+        }
+        #msg li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <ul id="msg"></ul>
+    <form action="">
+        <input type="text" id="w">
+        <button class='send-btn'>Send</button>
+    </form>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    //connect socket server
+    var socket = io();
+    //client send msg
+    $('form').submit(function() {
+        //send msg of form to socket,server receive msg 
+        socket.emit('chat message', $('#w').val());
+        //clear input val
+        $('#w').val('')
+        //no refresh form
+        return false;
+    })
+    //receive msg from server,render on msg-list
+    socket.on('chat message', function(msg){
+        $('#msg').append($('<li>').text(msg));
+    });
+
+
+
+    // console.log(socket);
+    /* var enterBtn = document.getElementById('w'),sendBtn = document.querySelector('.send-btn');
+    sendBtn.onclick = function() {console.log(123324234);};
+    sendBtn.addEventListener('click', function() {
+        console.log(123324234);
+    })
+    enterBtn.onkeypress = function(event){
+        if(event.which === 13) {
+            sendBtn.click()
+        }
+    }
+    window.onload = function(){
+        
+    } */
+</script>    
+</html>

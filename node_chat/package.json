@@ -1,0 +1,20 @@
+{
+  "name": "node_chat",
+  "version": "0.0.1",
+  "description": "web im",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "webIM",
+    "nodejs",
+    "express.js"
+  ],
+  "author": "gelu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1"
+  }
+}
