@@ -64,18 +64,16 @@
     //client send msg
     $('form').submit(function() {
         //send msg of form to socket,server receive msg 
-        socket.emit('chat message', $('#w').val());
+        socket.emit('chat client', $('#w').val());
         //clear input val
         $('#w').val('')
         //no refresh form
         return false;
     })
     //receive msg from server,render on msg-list
-    socket.on('chat message', function(msg){
+    socket.on('chat server', function(msg){
         $('#msg').append($('<li>').text(msg));
     });
-
-
 
     // console.log(socket);
     /* var enterBtn = document.getElementById('w'),sendBtn = document.querySelector('.send-btn');

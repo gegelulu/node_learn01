@@ -12,10 +12,10 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
     console.log('a user connected');
     
-    socket.on('chat message', function(msg) {
+    socket.on('chat client', function(msg) {
         console.log("message:" + msg);
         //server response:send this msg to client
-        io.emit("chat message",msg);
+        io.emit("chat server",msg);
     })
     socket.on('disconnect', function(){
         console.log('user disconnected');
